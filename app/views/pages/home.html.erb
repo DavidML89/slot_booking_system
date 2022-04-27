@@ -2,4 +2,6 @@
   <h1>Slot Booking system</h1>
   <%= react_component("Hello", { name: 'Transport Inc.'}) %>
   <%= react_component("SlotsOrganizer") %>
+  <%= content_tag :div, id: 'bookings_data', data: @bookings.to_json do %>
+  <% end %>
 <div>
