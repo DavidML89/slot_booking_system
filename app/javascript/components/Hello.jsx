@@ -19,9 +19,3 @@ Hello.propTypes = {
 }
 
 export default Hello
-// document.addEventListener('DOMContentLoaded', () => {
-//   ReactDOM.render(
-//     <Hello name="React" />,
-//     document.body.appendChild(document.createElement('div')),
-//   )
-// })
