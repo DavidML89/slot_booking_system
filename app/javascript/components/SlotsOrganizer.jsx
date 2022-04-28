@@ -8,14 +8,30 @@ class SlotsOrganizer extends Component {
     this.state = {
       slots: []
     }
+    this.createSlot = this.createSlot.bind(this)
   }
 
   createSlot(slot) {
-    const end_datetime = this.state.start_datetime + this.state.duration
-    const newSlot = { ...this.state, start_datetime: this.state.date, end_datetime: end_datetime }
-    this.setState(state => ({
-      slots
-    }))
+    let start_datetime = new Date(`${slot.date}T00:00:00.000Z`)
+    console.log(start_datetime)
+    // const min = parseInt(slot.duration.slice(3))
+    // const hrs = parseInt(slot.duration.slice(0, 2))
+    // const end_datetime_mill = start_datetime.setHours(start_datetime.getHours() + hrs, start_datetime.getMinutes() + min)
+    // const end_datetime = new Date(end_datetime_mill)
+    // console.log(end_date)
+    const nextDay = new Date(start_datetime.setDate(start_datetime.getDate() + 1 ))
+    console.log(nextDay)
+    let arr = []
+    do {
+      // this.setState(state => ({
+      //   slots
+      // }))
+      arr.push(new Date(start_datetime))
+      start_datetime.setMinutes(15)
+
+    } while ( start_datetime.getDate() <= nextDay.getDate() )
+    console.log(arr)
+    console.log('Done')
   }
 
   render() {
@@ -29,7 +45,7 @@ class SlotsOrganizer extends Component {
     ))
     return(
       <div>
-        <NewBookingForm />
+        <NewBookingForm createSlot={this.createSlot}/>
         {slots}
       </div>
     )

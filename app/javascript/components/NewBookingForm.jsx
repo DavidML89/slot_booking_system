@@ -16,7 +16,7 @@ class NewBookingForm extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createSlot(slot);
+    this.props.createSlot(this.state);
     this.setState({ date: '', duration: '' });
   }
 
