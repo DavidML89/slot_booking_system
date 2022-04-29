@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NewBookingForm from "./NewBookingForm";
 import Slot from "./Slot";
+import moment from 'moment';
 
 class SlotsOrganizer extends Component {
   constructor(props) {
@@ -12,24 +13,20 @@ class SlotsOrganizer extends Component {
   }
 
   createSlot(slot) {
-    let start_datetime = new Date(`${slot.date}T00:00:00.000Z`)
-    console.log(start_datetime)
-    // const min = parseInt(slot.duration.slice(3))
-    // const hrs = parseInt(slot.duration.slice(0, 2))
-    // const end_datetime_mill = start_datetime.setHours(start_datetime.getHours() + hrs, start_datetime.getMinutes() + min)
-    // const end_datetime = new Date(end_datetime_mill)
-    // console.log(end_date)
-    const nextDay = new Date(start_datetime.setDate(start_datetime.getDate() + 1 ))
-    console.log(nextDay)
+    const startDate = new moment(`${slot.date}T00:00:00.000Z`);
+    let beginningSlot = moment('00:00', 'HH:mm');
+    const lastSlot = moment('23:45', 'HH:mm');
+    const duration = moment.duration(slot.duration, 'HH:Mm');
+    console.log(duration)
     let arr = []
-    do {
-      // this.setState(state => ({
-      //   slots
-      // }))
-      arr.push(new Date(start_datetime))
-      start_datetime.setMinutes(15)
-
-    } while ( start_datetime.getDate() <= nextDay.getDate() )
+    while ( beginningSlot <= lastSlot ) {
+      let beginning = new moment(beginningSlot).format('HH:mm')
+      let endSlot = beginningSlot.add(duration)
+      let end = new moment(endSlot).format('HH:mm')
+      slot = { beginning, end }
+      arr.push(slot);
+      beginningSlot.add(15, 'minutes')
+    }
     console.log(arr)
     console.log('Done')
   }
@@ -39,7 +36,7 @@ class SlotsOrganizer extends Component {
       <Slot
         key={slot.id}
         id={slot.id}
-        start_datetime={slot.start_datetime}
+        startDate={slot.startDate}
         end_datetime={slot.end_datetime}
         duration={slot.duration} />
     ))
