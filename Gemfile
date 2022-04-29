@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'uuid', '~> 2.3', '>= 2.3.9'
+
 # React gems
 gem 'react-rails'
 

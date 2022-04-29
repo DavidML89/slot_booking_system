@@ -117,6 +117,8 @@ GEM
     loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    macaddr (1.7.2)
+      systemu (~> 2.6.5)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
@@ -210,6 +212,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    systemu (2.6.5)
     thor (1.2.1)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -217,6 +220,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uuid (2.3.9)
+      macaddr (~> 1.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -263,6 +268,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
+  uuid (~> 2.3, >= 2.3.9)
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
