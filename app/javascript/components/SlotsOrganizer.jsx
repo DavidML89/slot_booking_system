@@ -21,15 +21,33 @@ class SlotsOrganizer extends Component {
   }
 
   createSlot(slot) {
-    const startDate = new moment(`${slot.date}T00:00:00.000Z`);
-    let beginningSlot = moment('00:00', 'HH:mm');
-    const lastSlot = moment('23:45', 'HH:mm');
+    // fetch the bookings
+    const bookings = this.state.bookings;
+    // initialise the beginning and last time for the user input date
+    let beginningSlot = new moment.utc(`${slot.date}T00:00:00.000Z`);
+    const lastSlot = new moment.utc(`${slot.date}T23:45:00.000Z`);
     const duration = moment.duration(slot.duration, 'HH:Mm');
+    // initialise the array to welcome the slots
     let slots = []
+    // Looping to create a slot every 15min for this specific day
+    // if beginning and end of a slot is not included in a booking
     while ( beginningSlot <= lastSlot ) {
-      let beginning = new moment(beginningSlot).format('HH:mm')
+      // initiliase the date to the correct format to be comparable
+      let beginning = new moment.utc(beginningSlot)
       let endSlot = beginningSlot.add(duration)
-      let end = new moment(endSlot).format('HH:mm')
+      let end = new moment.utc(endSlot)
+      // map through the bookings to check if slot is available
+      bookings.map(booking => {
+        let endBooking = new moment.utc(booking.end_datetime);
+        // console.log(end_datetime);
+        // console.log(beginning);
+        let startBooking = new moment.utc(booking.start_datetime);
+        // console.log(beginning.format());
+        // if beginning and end of a slot is not included in a booking
+        if (beginning > endBooking && end < startBooking) {
+          return console.log('created');
+        }
+      })
       slot = { beginning, end, id: uuid(), duration: duration }
       slots.push(slot);
       beginningSlot.subtract(duration).add(15, 'minutes')
@@ -44,8 +62,8 @@ class SlotsOrganizer extends Component {
       <Slot
         key={slot.id}
         id={slot.id}
-        startDate={slot.beginning}
-        endDate={slot.end}
+        startDate={slot.beginning.format()}
+        endDate={slot.end.format()}
         duration={slot.duration} />
     ))
     return(
