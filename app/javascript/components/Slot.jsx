@@ -7,9 +7,9 @@ class Slot extends Component {
 
   render() {
     return(
-      <div className="slot" onClick={this.props.book}>
-        from {this.props.startDate} to {this.props.endDate}
-      </div>
+      <button className="slot" onClick={this.props.book}>
+        from {this.props.start_datetime} to {this.props.end_datetime}
+      </button>
     )
   }
 }

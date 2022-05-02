@@ -17,34 +17,43 @@ class NewBookingForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.createSlot(this.state);
-    this.setState({ date: '', duration: '' });
+    // this.setState({ date: '', duration: '' });
   }
 
   render() {
+    // let messageResult;
+    // if (!this.state.date == '') {
+    //   console.log('Test')
+    //   let messageResult = `The ${this.state.duration} for the ${this.state.date}`
+    //   return messageResult;
+    // }
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="date">Date</label>
-        <input
-          type="date"
-          id="date"
-          name="date"
-          value={this.state.date}
-          placeholder="choose a date"
-          onChange={this.handleChange}
-          />
-        <label htmlFor="duration">Duration</label>
-        <input
-          type='time'
-          min='00:15'
-          step='900'
-          id="duration"
-          name="duration"
-          value={this.state.duration}
-          placeholder="choose a duration"
-          onChange={this.handleChange}
-          />
-        <button>Send a request</button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit} className='new_booking_form'>
+          <label htmlFor="date">Date</label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={this.state.date}
+            placeholder="choose a date"
+            onChange={this.handleChange}
+            />
+          <label htmlFor="duration">Duration</label>
+          <input
+            type='time'
+            min='00:15'
+            step='900'
+            id="duration"
+            name="duration"
+            value={this.state.duration}
+            placeholder="choose a duration"
+            onChange={this.handleChange}
+            />
+          <button>Find a slot</button>
+        </form>
+        {/* {messageResult} */}
+      </div>
     )
   }
 }

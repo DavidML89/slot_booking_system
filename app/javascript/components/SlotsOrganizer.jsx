@@ -22,6 +22,7 @@ class SlotsOrganizer extends Component {
   }
 
   createSlot(slot) {
+
     // fetch the bookings
     const bookings = this.state.bookings;
     // initialise the beginning and last time for the user input date
@@ -45,11 +46,11 @@ class SlotsOrganizer extends Component {
         let startBooking = new moment.utc(booking.start_datetime);
         // console.log(beginning.format());
         // if beginning and end of a slot is not included in a booking
-        if (beginning > endBooking ) {  // && end < startBooking
+        if (beginning > endBooking && end < startBooking ) {  //
           return console.log('created');
         }
       })
-      slot = { beginning, end, id: uuid(), duration: duration }
+      slot = { start_datetime: beginning, end_datetime: end, id: uuid() }
       slots.push(slot);
       beginningSlot.subtract(duration).add(15, 'minutes')
     }
@@ -77,23 +78,16 @@ class SlotsOrganizer extends Component {
       <Slot
         key={slot.id}
         id={slot.id}
-        startDate={slot.beginning.format('HH:mm')}
-        endDate={slot.end.format('HH:mm')}
+        start_datetime={slot.start_datetime.format('HH:mm')}
+        end_datetime={slot.end_datetime.format('HH:mm')}
         duration={slot.duration}
         book={() => this.handleBooking(slot.idx)} />
     ))
-    // let messageResult;
-    // if (!beginning == defined) {
-    //   messageResult = `The ${this.state.slots[0]} for the ${this.state.slots[0].beginning}`
-    // } else {
-    //   messageResult = null
-    // }
+
     return(
       <div className="slots_organizer">
         <NewBookingForm
-          createSlot={this.createSlot}
-          className='NewBookingForm'/>
-        {/* {messageResult} */}
+          createSlot={this.createSlot} />
         <div className="slots">
           {slots}
         </div>
