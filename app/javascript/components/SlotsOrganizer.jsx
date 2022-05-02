@@ -67,8 +67,8 @@ class SlotsOrganizer extends Component {
         body: JSON.stringify(this.state),
         headers: { 'Content-Type': 'application/json' },
       }).then((response) => {
-        alert('Slot booked successfully'),
-        location.href = '/';
+        alert('Slot booked successfully')
+        // location.href = '/';
       });
     // }
   }
