@@ -12,6 +12,7 @@ class SlotsOrganizer extends Component {
       bookings: []
     }
     this.createSlot = this.createSlot.bind(this)
+    this.handleBooking = this.handleBooking.bind(this)
   }
 
   componentDidMount() {
@@ -57,6 +58,20 @@ class SlotsOrganizer extends Component {
     }))
   }
 
+  handleBooking(idx) {
+    console.log(idx);
+    // if (slot.idx === idx) {
+      fetch('/api/v1/bookings', {
+        method: 'post',
+        body: JSON.stringify(this.state),
+        headers: { 'Content-Type': 'application/json' },
+      }).then((response) => {
+        alert('Slot booked successfully'),
+        location.href = '/';
+      });
+    // }
+  }
+
   render() {
     const slots = this.state.slots.map(slot => (
       <Slot
@@ -64,13 +79,21 @@ class SlotsOrganizer extends Component {
         id={slot.id}
         startDate={slot.beginning.format('HH:mm')}
         endDate={slot.end.format('HH:mm')}
-        duration={slot.duration} />
+        duration={slot.duration}
+        book={() => this.handleBooking(slot.idx)} />
     ))
+    // let messageResult;
+    // if (!beginning == defined) {
+    //   messageResult = `The ${this.state.slots[0]} for the ${this.state.slots[0].beginning}`
+    // } else {
+    //   messageResult = null
+    // }
     return(
       <div className="slots_organizer">
         <NewBookingForm
           createSlot={this.createSlot}
           className='NewBookingForm'/>
+        {/* {messageResult} */}
         <div className="slots">
           {slots}
         </div>
