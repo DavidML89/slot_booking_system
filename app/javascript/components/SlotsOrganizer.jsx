@@ -44,7 +44,7 @@ class SlotsOrganizer extends Component {
         let startBooking = new moment.utc(booking.start_datetime);
         // console.log(beginning.format());
         // if beginning and end of a slot is not included in a booking
-        if (beginning > endBooking && end < startBooking) {
+        if (beginning > endBooking ) {  // && end < startBooking
           return console.log('created');
         }
       })
@@ -62,14 +62,18 @@ class SlotsOrganizer extends Component {
       <Slot
         key={slot.id}
         id={slot.id}
-        startDate={slot.beginning.format()}
-        endDate={slot.end.format()}
+        startDate={slot.beginning.format('HH:mm')}
+        endDate={slot.end.format('HH:mm')}
         duration={slot.duration} />
     ))
     return(
-      <div>
-        <NewBookingForm createSlot={this.createSlot}/>
-        {slots}
+      <div className="slots_organizer">
+        <NewBookingForm
+          createSlot={this.createSlot}
+          className='NewBookingForm'/>
+        <div className="slots">
+          {slots}
+        </div>
       </div>
     )
   }

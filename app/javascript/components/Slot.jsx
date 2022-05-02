@@ -7,7 +7,7 @@ class Slot extends Component {
 
   render() {
     return(
-      <div>
+      <div className="slot">
         from {this.props.startDate} to {this.props.endDate}
       </div>
     )
