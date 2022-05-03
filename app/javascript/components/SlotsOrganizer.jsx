@@ -9,7 +9,8 @@ class SlotsOrganizer extends Component {
     super(props)
     this.state = {
       slots: [],
-      bookings: []
+      bookings: [],
+      selectedSlot: false
     }
     this.createSlot = this.createSlot.bind(this)
     this.handleBooking = this.handleBooking.bind(this)
@@ -22,7 +23,6 @@ class SlotsOrganizer extends Component {
   }
 
   createSlot(slot) {
-
     // fetch the bookings
     const bookings = this.state.bookings;
     // initialise the beginning and last time for the user input date
@@ -59,18 +59,28 @@ class SlotsOrganizer extends Component {
     }))
   }
 
-  handleBooking(idx) {
-    console.log(idx);
-    // if (slot.idx === idx) {
-      fetch('/api/v1/bookings', {
-        method: 'post',
-        body: JSON.stringify(this.state),
-        headers: { 'Content-Type': 'application/json' },
-      }).then((response) => {
-        alert('Slot booked successfully')
-        // location.href = '/';
-      });
-    // }
+
+
+  handleBooking(id) {
+    const slot = this.state.slots.map((slot) => {
+      if (slot.id === id) {
+        console.log(slot);
+        const start_datetime = slot.start_datetime.format()
+        console.log(start_datetime);
+        const end_datetime = slot.end_datetime.format()
+        const selectedSlot = { id, start_datetime, end_datetime }
+        console.log(selectedSlot);
+
+        fetch('/api/v1/bookings/', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(selectedSlot),
+        }).then((response) => {
+          alert('Slot booked successfully')
+          // location.href = '/';
+        }).catch((err) => console.error("Error: " + err));
+      }
+    })
   }
 
   render() {
@@ -81,7 +91,7 @@ class SlotsOrganizer extends Component {
         start_datetime={slot.start_datetime.format('HH:mm')}
         end_datetime={slot.end_datetime.format('HH:mm')}
         duration={slot.duration}
-        book={() => this.handleBooking(slot.idx)} />
+        book={() => this.handleBooking(slot.id)} />
     ))
 
     return(
