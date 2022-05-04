@@ -57,14 +57,16 @@ class SlotsOrganizer extends Component {
         const start_datetime = slot.start_datetime.format()
         const end_datetime = slot.end_datetime.format()
         const selectedSlot = { id, start_datetime, end_datetime }
-        fetch('/api/v1/bookings/', {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(selectedSlot),
-        }).then((response) => {
-          alert(`Slot from the ${slot.start_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} to the ${slot.end_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} booked successfully`)
-          // location.href = '/';
-        }).catch((err) => console.error("Error: " + err));
+        if (window.confirm('Do you want to book this slot ?')) {
+          fetch('/api/v1/bookings/', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(selectedSlot),
+          }).then((response) => {
+            alert(`Slot from the ${slot.start_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} to the ${slot.end_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} booked successfully`)
+            // location.href = '/';
+          }).catch((err) => console.error("Error: " + err));
+        }
       }
     })
   }
