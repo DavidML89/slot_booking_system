@@ -7,9 +7,13 @@
   text-align: center;
   background-color: #e7eeff;
   font-size: 20px;
+  border-radius: 5px;
+  position: sticky;
+  top: 20px;
 }
 
 .new_booking_form button {
+  width: 200px;
   color: #e7eeff;
   background-color: #484dff;
   border: none;
@@ -19,5 +23,6 @@
 }
 
 .new_booking_form input {
-  margin: 10px;
+  width: 200px;
+  margin: 10px 0 20px 0;
 }

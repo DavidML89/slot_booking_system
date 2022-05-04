@@ -1,17 +1,15 @@
 .slot {
   color: #484dff;
-  width: 200px;
-  padding: 5px;
-  margin: 5px;
+  width: auto;
+  padding: 10px 20px;
+  margin: 10px;
   border: none;
-  // border-radius: 5px;
+  border-radius: 5px;
   background-color: #e7eeff;
+  font-size: 18px;
 }
 
 .slot:hover {
   color: #e7eeff;
   background-color: #484dff;
 }
-// .hidden {
-//   display: none;
-// }

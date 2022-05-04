@@ -7,11 +7,14 @@
   flex: 0 0 30%;
   background-color: #e7eeff;
   width: 150px;
-  padding: 20px
+  padding: 20px;
+  margin: 10px 10px 0 0;
+  border-radius: 5px;
 }
 
 .slots {
   display: flex;
+  align-self: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
   flex: 0 0 70%;
