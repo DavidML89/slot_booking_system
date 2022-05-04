@@ -91,6 +91,7 @@ class SlotsOrganizer extends Component {
         <div className="form">
           <NewBookingForm createSlot={this.checkAvailability} />
           {/* {messageResult} */}
+          <p>Select a slot to book it</p>
         </div>
         <div className="slots">
           {slots}

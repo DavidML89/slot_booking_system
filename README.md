@@ -7,4 +7,5 @@ v3.0.3
 v6.1.5.1
 
 <h2>Configuration</h2>
-bundle install
+
+`bundle install`
