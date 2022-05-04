@@ -11,9 +11,17 @@ class Slot extends Component {
   }
 
   render() {
+    let classes = '';
+    if (this.props.available) {
+      classes = 'slot'
+    } else {
+      classes = 'slot hidden'
+    }
     return(
-      <button className="slot" onClick={this.handleSelect}>
-        from {this.props.start_datetime} to {this.props.end_datetime}
+      <button className={classes} onClick={this.handleSelect}>
+        from {this.props.start_datetime}
+        to {this.props.end_datetime}
+        available: {this.props.available ? 'true' : 'false'}
       </button>
     )
   }

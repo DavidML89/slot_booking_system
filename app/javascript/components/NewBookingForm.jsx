@@ -52,7 +52,7 @@ class NewBookingForm extends Component {
             />
           <button>Find a slot</button>
         </form>
-        {/* {messageResult} */}
+        {/* { messageResult } */}
       </div>
     )
   }
