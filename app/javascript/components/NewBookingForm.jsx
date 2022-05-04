@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class NewBookingForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: '', start_datetime: '', end_datetime: '', duration: ''};
+    this.state = { date: '', duration: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -17,7 +17,6 @@ class NewBookingForm extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.createSlot(this.state);
-    // this.setState({ date: '', duration: '' });
   }
 
   render() {

@@ -81,14 +81,16 @@ class SlotsOrganizer extends Component {
       /> :
       null
     ))
-    let messageResult = `The ${this.state.slots.duration} for the ${this.state.slots.date}`
+    // let messageResult = '';
+    // this.state.slots.map((slot) => {
+    //   return messageResult = `The ${slot.duration} for the ${slot.start_datetime.format('dddd, MMMM Do YYYY')}`
+    // })
 
     return(
       <div className="slots_organizer">
         <div className="form">
-          <NewBookingForm
-            createSlot={this.checkAvailability} />
-          {messageResult}
+          <NewBookingForm createSlot={this.checkAvailability} />
+          {/* {messageResult} */}
         </div>
         <div className="slots">
           {slots}
