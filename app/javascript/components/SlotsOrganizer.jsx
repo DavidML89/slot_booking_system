@@ -24,30 +24,6 @@ class SlotsOrganizer extends Component {
     then((bookings) => this.setState( { bookings }));
   }
 
-//   dateRangeOverlaps(a_start, a_end, b_start, b_end) {
-//     if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
-//     if (a_start <= b_end   && b_end   <= a_end) return true; // b ends in a
-//     if (b_start <  a_start && a_end   <  b_end) return true; // a in b
-//     return false;
-//   }
-//   multipleDateRangeOverlaps(dates) {
-//     let i, j;
-//     console.log(dates.lenght)
-//     if (dates.length % 2 !== 0)
-//       throw new TypeError('dates length must be a multiple of 2');
-//     for (i = 0; i < dates.length - 2; i += 2) {
-//       for (j = i + 2; j < dates.length; j += 2) {
-//         if (
-//           this.dateRangeOverlaps(
-//             dates[i], dates[i+1],
-//             dates[j], dates[j+1]
-//             )
-//             ) return true;
-//           }
-//         }
-//         return false;
-// }
-
   createBookingRange(arr) {
     let i;
     let bookingsRange = [];
@@ -82,8 +58,8 @@ class SlotsOrganizer extends Component {
     // let bookingsRange = this.createBookingRange(bookingsArray);
     // console.log('bookingsRange', bookingsRange)
     // initialise the beginning and last time for the user input date
-    let beginningSlot = new moment.utc(`${slot.date}T18:00:00.000Z`);
-    const lastSlot = new moment.utc(`${slot.date}T23:00:00.000Z`);
+    let beginningSlot = new moment.utc(`${slot.date}T00:00:00.000Z`);
+    const lastSlot = new moment.utc(`${slot.date}T23:45:00.000Z`);
     const duration = moment.duration(slot.duration, 'HH:Mm');
     // initialise the array to welcome the slots
     let slots = []
@@ -125,28 +101,22 @@ class SlotsOrganizer extends Component {
     let bookingsArray = this.createBookingArray(bookings)
     // let overlap = this.multipleDateRangeOverlaps(bookingsArray);
     let bookingsRange = this.createBookingRange(bookingsArray);
-    console.log('bookingsRange', bookingsRange)
     let availableSlots = [];
     slots.map(slot => {
       let beginning = slot.start_datetime
       let end = slot.end_datetime
+      let rangeSlot = moment.range(beginning, end)
       bookingsRange.map((range) => {
-        console.log('range', range)
-        console.log('beginning', beginning)
-        console.log(range.contains(beginning))
-        console.log('end', end)
-        console.log(range.contains(end))
-        if (range.contains(beginning) || range.contains(end)) {
-          console.log('slot in range non available', slot)
+        if (rangeSlot.overlaps(range)) {
+          console.log('slot overlaping non available', slot)
           slot = { ...slot, available: false }
         } else {
-          console.log('slot not in range available', slot)
+          console.log('slot not overlaping available', slot)
           return slot;
         }
       });
       availableSlots.push(slot)
     })
-    console.log('availableSlots', availableSlots)
     this.setState({ slots: availableSlots })
   }
 
