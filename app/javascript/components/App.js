@@ -7,9 +7,6 @@ import Home from "./Home";
 function App() {
   return (
     <div className="app">
-      {/* <h1>Slot Booking system</h1>
-      <Hello name="'Transport Inc.'" />
-      <SlotsOrganizer /> */}
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

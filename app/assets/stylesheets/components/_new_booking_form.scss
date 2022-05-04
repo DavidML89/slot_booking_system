@@ -5,4 +5,19 @@
   justify-content: center;
   margin: auto;
   text-align: center;
+  background-color: #e7eeff;
+  font-size: 20px;
+}
+
+.new_booking_form button {
+  color: #e7eeff;
+  background-color: #484dff;
+  border: none;
+  &:hover {
+    background-color: #1a3066;
+  }
+}
+
+.new_booking_form input {
+  margin: 10px;
 }

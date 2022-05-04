@@ -1,5 +1,18 @@
+.slots_organizer {
+  display: flex;
+}
+
+.form {
+  // align-self: center;
+  flex: 0 0 30%;
+  background-color: #e7eeff;
+  width: 150px;
+  padding: 20px
+}
+
 .slots {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  flex: 0 0 70%;
 }

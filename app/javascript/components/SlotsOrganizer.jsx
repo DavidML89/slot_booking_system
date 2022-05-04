@@ -62,7 +62,7 @@ class SlotsOrganizer extends Component {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(selectedSlot),
         }).then((response) => {
-          alert('Slot booked successfully')
+          alert(`Slot from the ${slot.start_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} to the ${slot.end_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} booked successfully`)
           // location.href = '/';
         }).catch((err) => console.error("Error: " + err));
       }
@@ -81,13 +81,15 @@ class SlotsOrganizer extends Component {
       /> :
       null
     ))
-    let messageResult = `The ${this.state.duration} for the ${this.state.date}`
+    let messageResult = `The ${this.state.slots.duration} for the ${this.state.slots.date}`
 
     return(
       <div className="slots_organizer">
-        <NewBookingForm
-          createSlot={this.checkAvailability} />
-        {messageResult}
+        <div className="form">
+          <NewBookingForm
+            createSlot={this.checkAvailability} />
+          {messageResult}
+        </div>
         <div className="slots">
           {slots}
         </div>
