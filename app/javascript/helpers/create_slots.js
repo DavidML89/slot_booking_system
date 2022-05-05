@@ -4,34 +4,6 @@ import {v4 as uuid} from "uuid";
 
 const moment = extendMoment(Moment);
 
-// create an array of booking start date and booking end date
-function createBookingArray(bookings) {
-  let i;
-  let bookingsArray = [];
-  // const bookingArray = Object.values(bookings);
-  bookings.map((booking) => {
-    bookingsArray.push(Object.values(booking))
-  })
-  let bookingArr = []
-  bookingsArray.map((arr) => {
-    bookingArr.push(arr[1], arr[2])
-  })
-  return bookingArr;
-}
-
-// transform the booking start and end date into an array of Range object
-function createBookingRange(bookings) {
-  let arr = createBookingArray(bookings)
-  let i;
-  let bookingsRange = [];
-  for (i = 0; i < arr.length; i += 2) {
-    let range = moment.range(arr[i], arr[i+1])
-    bookingsRange.push(range);
-  }
-  // console.log(bookingsRange);
-  return bookingsRange;
-}
-
 // Create a slot every 15min for the requested day
 function createSlot(slot) {
   // initialise the beginning and last time for the user input date
@@ -55,4 +27,4 @@ function createSlot(slot) {
   return slots;
 }
 
-export { createBookingRange, createSlot };
+export default createSlot;

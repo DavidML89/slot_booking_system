@@ -1,12 +1,12 @@
-<h1 justify-content='center'>Slot booking system</h1>
+<h1>Slot booking system</h1>
 
-This simple webapp is an excercise allowing to book a slot for a specific date and a specific duration.
-The webapp suggest a list of available slot.
-User can then select a slot and book it.
+This simple web app is an exercise allowing the user to book a slot for a specific date and a specific duration.
+The webapp suggests a list of available slots.
+The user can then select a slot and book it.
 
-The webapp has been built using React as Frontend and integrating it with a Rails back-end via webpacker.
+The web app has been built using React as Frontend and is integrated with a Rails back-end via webpacker.
 
-Please follow this readme to see how to get the project set up on your computer.
+Please follow this readme to see how to view the project set it up on your computer.
 
 <h2>Ruby version</h2>
 v3.0.3

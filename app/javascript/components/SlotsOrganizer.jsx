@@ -3,7 +3,8 @@ import NewBookingForm from "./NewBookingForm";
 import Slot from "./Slot";
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import { createBookingRange, createSlot } from '../helpers/helpers'
+import createBookingRange from '../helpers/create_bookings_range.js'
+import createSlot from '../helpers/create_slots.js'
 
 const moment = extendMoment(Moment);
 
