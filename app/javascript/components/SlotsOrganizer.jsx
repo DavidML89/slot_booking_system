@@ -1,8 +1,12 @@
+// External libraries
 import React, { Component } from "react";
-import NewBookingForm from "./NewBookingForm";
-import Slot from "./Slot";
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import PropTypes from "prop-types";
+// Component
+import NewBookingForm from "./NewBookingForm";
+import Slot from "./Slot";
+// Helper functions
 import createBookingRange from '../helpers/create_bookings_range.js'
 import createSlot from '../helpers/create_slots.js'
 

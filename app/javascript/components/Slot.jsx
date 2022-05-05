@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Slot extends Component {
   constructor(props) {
@@ -18,6 +19,11 @@ class Slot extends Component {
       </button>
     )
   }
+}
+
+Slot.propTypes= {
+  start_datetime: PropTypes.string.isRequired,
+  end_datetime: PropTypes.string.isRequired
 }
 
 export default Slot;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class NewBookingForm extends Component {
   constructor(props) {
@@ -46,6 +47,10 @@ class NewBookingForm extends Component {
       </form>
     )
   }
+}
+
+NewBookingForm.propTypes= {
+  createSlot: PropTypes.func.isRequired
 }
 
 export default NewBookingForm;
