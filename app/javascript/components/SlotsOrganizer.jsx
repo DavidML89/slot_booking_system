@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import PropTypes from "prop-types";
 // Component
 import NewBookingForm from "./NewBookingForm";
 import Slot from "./Slot";
@@ -88,16 +87,11 @@ class SlotsOrganizer extends Component {
       /> :
       null
     ))
-    // let messageResult = '';
-    // this.state.slots.map((slot) => {
-    //   return messageResult = `The ${slot.duration} for the ${slot.start_datetime.format('dddd, MMMM Do YYYY')}`
-    // })
 
     return(
       <div className="slots_organizer">
         <div className="form">
           <NewBookingForm createSlot={this.checkAvailability} />
-          {/* {messageResult} */}
           <p>Select a slot to book it</p>
         </div>
         <div className="slots">

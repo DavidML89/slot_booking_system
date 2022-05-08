@@ -10,11 +10,11 @@ function createSlot(slot) {
   let beginningSlot = new moment.utc(`${slot.date}T00:00:00.000Z`);
   const lastSlot = new moment.utc(`${slot.date}T23:45:00.000Z`);
   const duration = moment.duration(slot.duration, 'HH:Mm');
-  // initialise the array to welcome the slots
+  // initialise the array to receive the slots
   let slots = [];
   // Looping to create a slot every 15min for this specific day
   while ( beginningSlot <= lastSlot ) {
-    // initiliase the date to the correct format to be comparable
+    // initiliase the date to the correct format to be pushed in the slot object
     let beginning = new moment.utc(beginningSlot);
     let endSlot = beginningSlot.add(duration);
     let end = new moment.utc(endSlot);
@@ -22,6 +22,7 @@ function createSlot(slot) {
     slot = { start_datetime: beginning, end_datetime: end, id: uuid(), available: true };
     // add the slot object into the slots array
     slots.push(slot);
+    // add 15min to the create the next slot
     beginningSlot.subtract(duration).add(15, 'minutes');
   }
   return slots;
