@@ -14,6 +14,9 @@ v3.0.3
 <h2>Rails version</h2>
 v6.1.5.1
 
+<h2>React version</h2>
+v18.1.0
+
 <h2>Configuration</h2>
 
 ```bundle install```
