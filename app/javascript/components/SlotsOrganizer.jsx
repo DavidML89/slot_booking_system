@@ -13,13 +13,13 @@ const moment = extendMoment(Moment);
 
 class SlotsOrganizer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       slots: [],
       bookings: [],
-    }
-    this.checkAvailability = this.checkAvailability.bind(this)
-    this.handleBooking = this.handleBooking.bind(this)
+    };
+    this.checkAvailability = this.checkAvailability.bind(this);
+    this.handleBooking = this.handleBooking.bind(this);
   }
 
   componentDidMount() {
@@ -39,28 +39,28 @@ class SlotsOrganizer extends Component {
     // iterate through each slots to verify if it overlaps a booking
     slots.map(slot => {
       // create a range for the slot
-      let beginning = slot.start_datetime
-      let end = slot.end_datetime
-      let rangeSlot = moment.range(beginning, end)
-      // if doesn't overlaps return false else return true
+      let beginning = slot.start_datetime;
+      let end = slot.end_datetime;
+      let rangeSlot = moment.range(beginning, end);
+      // if doesn't overlaps return avaialble true else return avaialble false
       bookingsRange.map((range) => {
         if (rangeSlot.overlaps(range)) {
-          slot = { ...slot, available: false }
+          slot = { ...slot, available: false };
         } else {
           return slot;
         }
       });
       availableSlots.push(slot)
     })
-    this.setState({ slots: availableSlots })
+    this.setState({ slots: availableSlots });
   }
 
   handleBooking(id) {
     const slot = this.state.slots.map((slot) => {
       if (slot.id === id) {
-        const start_datetime = slot.start_datetime.format()
-        const end_datetime = slot.end_datetime.format()
-        const selectedSlot = { id, start_datetime, end_datetime }
+        const start_datetime = slot.start_datetime.format();
+        const end_datetime = slot.end_datetime.format();
+        const selectedSlot = { id, start_datetime, end_datetime };
         if (window.confirm('Do you want to book this slot ?')) {
           fetch('/api/v1/bookings/', {
             method: 'post',
@@ -70,7 +70,7 @@ class SlotsOrganizer extends Component {
             alert(`Slot from the ${slot.start_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} to the ${slot.end_datetime.format("dddd, MMMM Do YYYY, h:mm:ss a")} booked successfully`)
             // location.href = '/';
           }).catch((err) => console.error("Error: " + err));
-        }
+        };
       }
     })
   }
