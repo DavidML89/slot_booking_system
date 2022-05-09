@@ -5,8 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+p 'Delete all the bookings 😱'
 Booking.delete_all
+p 'Bookings deleted 😭'
 
+p 'Creating the bookings 🥳'
 Booking.create!([
                   { id: "bd8fc476-ac50-3327-4ece-d73897796852",
                     start_datetime: "2022-02-01T20:00:00.000Z",
@@ -33,3 +36,4 @@ Booking.create!([
                     start_datetime: "2022-02-01T13:00:00.000Z",
                     end_datetime: "2022-02-01T13:10:00.000Z" }
                 ])
+p 'Bookings created 💃'
